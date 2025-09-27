@@ -1,0 +1,138 @@
+import React from 'react';
+import '../index.css';
+
+type ClockFormProps = {
+  learningMinutes: number;
+  setLearningMinutes: (v: number) => void;
+  learningSeconds: number;
+  setLearningSeconds: (v: number) => void;
+  miniBreakMinutes: number;
+  setMiniBreakMinutes: (v: number) => void;
+  miniBreakSeconds: number;
+  setMiniBreakSeconds: (v: number) => void;
+  fullBreakMinutes: number;
+  setFullBreakMinutes: (v: number) => void;
+  fullBreakSeconds: number;
+  setFullBreakSeconds: (v: number) => void;
+  rounds: number;
+  setRounds: (v: number) => void;
+  isRunning: boolean;
+  onChange: (
+    learningM: number,
+    learningS: number,
+    miniM: number,
+    miniS: number,
+    fullM: number,
+    fullS: number,
+    rounds: number
+  ) => void;
+};
+
+export default function ClockForm(props: ClockFormProps) {
+  function handleSpinnerChange(setter: (v: number) => void, value: string, type: string) {
+    let num = parseInt(value);
+    if (isNaN(num)) num = 0;
+    if (type === 'learningMinutes' || type === 'miniBreakMinutes' || type === 'fullBreakMinutes') {
+      if (num < 0) num = 0;
+      if (num > 59) num = 59;
+    } else if (type === 'rounds') {
+      if (num < 1) num = 1;
+      if (num > 59) num = 59;
+    } else {
+      if (num < 0) num = 0;
+      if (num > 59) num = 59;
+    }
+    setter(num);
+
+    props.onChange(
+      type === 'learningMinutes' ? num : props.learningMinutes,
+      type === 'learningSeconds' ? num : props.learningSeconds,
+      type === 'miniBreakMinutes' ? num : props.miniBreakMinutes,
+      type === 'miniBreakSeconds' ? num : props.miniBreakSeconds,
+      type === 'fullBreakMinutes' ? num : props.fullBreakMinutes,
+      type === 'fullBreakSeconds' ? num : props.fullBreakSeconds,
+      type === 'rounds' ? num : props.rounds
+    );
+  }
+
+  return (
+    <fieldset disabled={props.isRunning} style={{ border: 'none', margin: 0, padding: 0 }}>
+        <div className='time-label'>Working Time</div>
+        <div className="time-group">
+            <input
+                type="number"
+                min={0}
+                max={59}
+                value={props.learningMinutes}
+                onChange={e => handleSpinnerChange(props.setLearningMinutes, e.target.value, 'learningMinutes')}
+                name="learningMinutes"
+                className="time-input"
+            />
+            <div className='time-colon'>:</div>
+            <input
+                type="number"
+                min={0}
+                max={59}
+                value={props.learningSeconds}
+                onChange={e => handleSpinnerChange(props.setLearningSeconds, e.target.value, 'learningSeconds')}
+                name="learningSeconds"
+                className="time-input"
+            />
+        </div>
+        <div className='time-label'>Mini Break Time</div>
+        <div className="time-group">
+            <input
+                type="number"
+                min={0}
+                max={59}
+                value={props.miniBreakMinutes}
+                onChange={e => handleSpinnerChange(props.setMiniBreakMinutes, e.target.value, 'miniBreakMinutes')}
+                name="miniBreakminutes"
+                className="time-input"
+            />
+            <div className='time-colon'>:</div>
+            <input
+                type="number"
+                min={0}
+                max={59}
+                value={props.miniBreakSeconds}
+                onChange={e => handleSpinnerChange(props.setMiniBreakSeconds, e.target.value, 'miniBreakSeconds')}
+                name="miniBreakseconds"
+                className="time-input"
+            />
+        </div>
+        <div className='time-label'>Full Break Time</div>
+        <div className="time-group">
+            <input
+                type="number"
+                min={0}
+                max={59}
+                value={props.fullBreakMinutes}
+                onChange={e => handleSpinnerChange(props.setFullBreakMinutes, e.target.value, 'fullBreakMinutes')}
+                name="fullBreakminutes"
+                className="time-input"
+            />
+            <div className='time-colon'>:</div>
+            <input
+                type="number"
+                min={0}
+                max={59}
+                value={props.fullBreakSeconds}
+                onChange={e => handleSpinnerChange(props.setFullBreakSeconds, e.target.value, 'fullBreakSeconds')}
+                name="fullBreakseconds"
+                className="time-input"
+            />
+        </div>
+        <div className='time-label'>Round of mini breaks</div>
+        <input
+            type="number"
+            min={1}
+            max={59}
+            value={props.rounds}
+            onChange={e => handleSpinnerChange(props.setRounds, e.target.value, 'rounds')}
+            name="rounds"
+            className="time-input"
+        />
+    </fieldset>
+  );
+}
