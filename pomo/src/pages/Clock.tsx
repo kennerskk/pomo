@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ClockForm from '../components/ClockForm';
-import ClockDisplay from '../components/ClockDisplay';
-import ClockButtons from '../components/ClockButtons';
+// import ClockDisplay from '../components/ClockDisplay';
+// import ClockButtons from '../components/ClockButtons';
 import CountdownCircle from "../components/CountdownCircle";
 
 type Time = { minutes: number; seconds: number };
@@ -181,9 +181,10 @@ function Clock() {
     <div
       style={{
         minHeight: '100vh',
+        maxHeight: '100vh',
         background: getBgColor(),
         transition: 'background 0.5s',
-        paddingTop: '120px',
+        alignContent: 'center',
       }}
     >
       <div
