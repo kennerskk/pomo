@@ -63,7 +63,7 @@ export default function ClockForm(props: ClockFormProps) {
                 type="number"
                 min={0}
                 max={59}
-                value={props.learningMinutes}
+                value={props.learningMinutes.toString().padStart(2, '0')}
                 onChange={e => handleSpinnerChange(props.setLearningMinutes, e.target.value, 'learningMinutes')}
                 name="learningMinutes"
                 className="time-input"
@@ -73,7 +73,7 @@ export default function ClockForm(props: ClockFormProps) {
                 type="number"
                 min={0}
                 max={59}
-                value={props.learningSeconds}
+                value={props.learningSeconds.toString().padStart(2, '0')}
                 onChange={e => handleSpinnerChange(props.setLearningSeconds, e.target.value, 'learningSeconds')}
                 name="learningSeconds"
                 className="time-input"
@@ -85,7 +85,7 @@ export default function ClockForm(props: ClockFormProps) {
                 type="number"
                 min={0}
                 max={59}
-                value={props.miniBreakMinutes}
+                value={props.miniBreakMinutes.toString().padStart(2, '0')}
                 onChange={e => handleSpinnerChange(props.setMiniBreakMinutes, e.target.value, 'miniBreakMinutes')}
                 name="miniBreakminutes"
                 className="time-input"
@@ -95,7 +95,7 @@ export default function ClockForm(props: ClockFormProps) {
                 type="number"
                 min={0}
                 max={59}
-                value={props.miniBreakSeconds}
+                value={props.miniBreakSeconds.toString().padStart(2, '0')}
                 onChange={e => handleSpinnerChange(props.setMiniBreakSeconds, e.target.value, 'miniBreakSeconds')}
                 name="miniBreakseconds"
                 className="time-input"
@@ -107,7 +107,7 @@ export default function ClockForm(props: ClockFormProps) {
                 type="number"
                 min={0}
                 max={59}
-                value={props.fullBreakMinutes}
+                value={props.fullBreakMinutes.toString().padStart(2, '0')}
                 onChange={e => handleSpinnerChange(props.setFullBreakMinutes, e.target.value, 'fullBreakMinutes')}
                 name="fullBreakminutes"
                 className="time-input"
@@ -117,7 +117,7 @@ export default function ClockForm(props: ClockFormProps) {
                 type="number"
                 min={0}
                 max={59}
-                value={props.fullBreakSeconds}
+                value={props.fullBreakSeconds.toString().padStart(2, '0')}
                 onChange={e => handleSpinnerChange(props.setFullBreakSeconds, e.target.value, 'fullBreakSeconds')}
                 name="fullBreakseconds"
                 className="time-input"
