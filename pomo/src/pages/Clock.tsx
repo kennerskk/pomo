@@ -118,21 +118,21 @@ function Clock() {
     intervalRef.current = setInterval(() => {
       if (phase === 'learning') {
         if (learningTime.minutes === 0 && learningTime.seconds === 0) {
-          setPhase('mini');
-          setMiniBreak({ ...initialMini.current });
+          if (currentRound >= rounds+1) {
+            setPhase('full');
+            setFullBreak({ ...initialFull.current });
+          } else {
+            setPhase('mini');
+            setMiniBreak({ ...initialMini.current });
+          }
         } else {
           setLearningTime(prev => decreaseTime(prev));
         }
       } else if (phase === 'mini') {
         if (miniBreak.minutes === 0 && miniBreak.seconds === 0) {
-          if (currentRound < rounds) {
-            setCurrentRound(r => r + 1);
-            setPhase('learning');
-            setLearningTime({ ...initialLearning.current });
-          } else {
-            setPhase('full');
-            setFullBreak({ ...initialFull.current });
-          }
+          setCurrentRound(r => r + 1);
+          setPhase('learning');
+          setLearningTime({ ...initialLearning.current });
         } else {
           setMiniBreak(prev => decreaseTime(prev));
         }
