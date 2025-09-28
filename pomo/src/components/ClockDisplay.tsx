@@ -12,14 +12,18 @@ type ClockDisplayProps = {
   rounds: number;
 };
 
+function pad(n: number) {
+  return n.toString().padStart(2, '0');
+}
+
 export default function ClockDisplay(props: ClockDisplayProps) {
   let timeStr = '';
   if (props.phase === 'learning') {
-    timeStr = `${props.learningMinutes}:${props.learningSeconds.toString().padStart(2, '0')}`;
+    timeStr = `${pad(props.learningMinutes)}:${pad(props.learningSeconds)}`;
   } else if (props.phase === 'mini') {
-    timeStr = `${props.miniBreakMinutes}:${props.miniBreakSeconds.toString().padStart(2, '0')}`;
+    timeStr = `${pad(props.miniBreakMinutes)}:${pad(props.miniBreakSeconds)}`;
   } else {
-    timeStr = `${props.fullBreakMinutes}:${props.fullBreakSeconds.toString().padStart(2, '0')}`;
+    timeStr = `${pad(props.fullBreakMinutes)}:${pad(props.fullBreakSeconds)}`;
   }
   return (
     <div style={{ fontSize: '2em', margin: '1em 0' }}>
