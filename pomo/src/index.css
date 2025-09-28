@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
 
+:root {
+  font-family: 'Noto Sans Thai', sans-serif;
+  --profile-size: 196px;
+}
+
 /* For all selected text on the page */
 ::selection {
   background-color: #ff8; /* Sets the background color of the selection */
@@ -21,6 +26,7 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 body {
@@ -35,8 +41,34 @@ body {
   font-family: 'Noto Sans Thai', sans-serif;
 }
 
+h1 {
+  font-size: 4em;
+  font-weight: 1000;
+  line-height: 1em;
+  text-align: center;
+  margin: 0;
+  padding: 1em 0 2em 0;
+
+  transform: rotate(-2deg);
+}
+
+h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.4em;
+  font-weight: 800;
+}
+
+h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  font-weight: 300;
+}
+
 .logo {
   font-weight: 1000;
+  -webkit-user-select: none;
   user-select: none;
   cursor: pointer;
   padding: 0 16px 0 16px;
@@ -65,9 +97,9 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-
-  backdrop-filter: blur(8px);           /* เบลอพื้นหลัง */
+  
   -webkit-backdrop-filter: blur(8px);   /* รองรับ Safari */
+  backdrop-filter: blur(8px);           /* เบลอพื้นหลัง */
   box-shadow: #00000010 0 12px 12px; /* เงา */
   
   z-index: 1000;         /* ให้ซ้อนบนทุกอย่าง */
@@ -129,6 +161,7 @@ nav:hover {
   font-size: 1em;
   margin-bottom: none;
   font-weight: normal;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -240,3 +273,174 @@ nav:hover {
 .btn-start:hover { background-color: #00000023; }
 .btn-stop:hover { background-color: #ca8a04; }
 .btn-reset:hover { background-color: #b91c1c; }
+
+/*   ---------- CONTACT PAGE ----------   */
+
+.contact-body {
+  background-color: #1b1b1bff;
+  min-height: 100vh;
+  padding: 80px 20px 20px 20px;
+}
+
+.contact-card-container {
+  display: flex;
+  justify-content: center;
+  gap: 4em;
+}
+
+.contact-card {
+  border: #ffffff30 solid 2px;
+  border-radius: 2em;
+  min-width: 10vw;
+  max-width: 30vw;
+  padding: 0 2em 2em 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  box-shadow: #00000055 0 12px 12px;
+
+  transition: background-color 150ms ease-out;
+}
+
+.contact-card:hover {
+  background-color: #ffffff10;
+
+  transition: background-color 150ms ease-out;
+}
+
+.contact-card-content {
+  translate: 0px calc(var(--profile-size) / 2 * -1);
+}
+
+.contact-card-text {
+  opacity: 0.9;
+
+  transition: opacity 150ms ease-out;
+}
+
+.contact-card-links {
+  text-align: left;
+  margin: 1em 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.profile {
+  border-radius: 50%;
+  min-width: 64px;
+  max-width: 196px;
+  height: auto;
+  margin-bottom: 1em;
+  -webkit-user-select: none;
+  user-select: none;
+
+  filter: saturate(0.85) brightness(0.7) contrast(1.5);
+  border: #888 solid 2px;
+  box-shadow: #00000033 0 8px 8px;
+
+  transition: filter 150ms ease-out,
+              border 150ms ease-out;
+}
+
+.contact-card:hover .profile {
+  filter: saturate(1) brightness(1) contrast(1);
+  border: #ddd solid 2px;
+}
+
+.contact-card:hover .contact-card-text {
+  opacity: 1;
+}
+
+.contact-card-paragraph {
+  color: #bbb;
+  font-weight: 300;
+  margin-bottom: 2em;
+}
+
+.email {
+  color: #000;
+  background-color: #fff;
+}
+
+.github {
+  color: #ffffff;
+  background-color: black;
+}
+
+.discord {
+  color: #ffffff;
+  background-color: #5865f2;
+}
+
+.email, .github, .discord {
+  padding: 0;
+  margin: 0;
+  border-radius: 12px;
+  border: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  gap: 1em;
+
+  transition: translate 150ms ease-out, 
+              box-shadow 150ms ease-out;
+}
+
+.email:hover,.github:hover, .discord:hover {
+  translate: 0px -4px;
+  box-shadow: #00000033 0 4px 4px;
+
+  transition: translate 150ms ease-out, 
+              box-shadow 150ms ease-out;
+}
+
+.email:hover .links-icon, .github:hover .links-icon, .discord:hover .links-icon {
+  animation: spin 500ms ease-out forwards;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.button {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.copied {
+  color: #000;
+  background-color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  position: fixed;
+  bottom: 12px;
+  left: 24px;
+  text-align: center;
+  z-index: 999;
+  opacity: 0;
+  -webkit-user-select: none;
+  user-select: none;
+
+  transition: opacity 300ms ease-out, 
+              translate 300ms ease-out, 
+              box-shadow 300ms ease-out;
+}
+
+.copied.show {
+  opacity: 1;
+  translate: 0px -12px;
+  box-shadow: #00000015 0 4px 4px;
+
+  transition: opacity 300ms ease-out, 
+              translate 300ms ease-out, 
+              box-shadow 300ms ease-out;
+}
