@@ -42,6 +42,53 @@ export default function ClockForm(props: ClockFormProps) {
       if (num < 0) num = 0;
       if (num > 59) num = 59;
     }
+    // เงื่อนไข: ถ้า minute < 1, second ต้องมากกว่า 0
+    if (type === 'learningMinutes' && num < 1 && props.learningSeconds < 1) {
+      props.setLearningSeconds(1);
+      props.onChange(
+        num,
+        1,
+        props.miniBreakMinutes,
+        props.miniBreakSeconds,
+        props.fullBreakMinutes,
+        props.fullBreakSeconds,
+        props.rounds
+      );
+    }
+    if (type === 'learningSeconds' && props.learningMinutes < 1 && num < 1) {
+      num = 1;
+    }
+    if (type === 'miniBreakMinutes' && num < 1 && props.miniBreakSeconds < 1) {
+      props.setMiniBreakSeconds(1);
+      props.onChange(
+        props.learningMinutes,
+        props.learningSeconds,
+        num,
+        1,
+        props.fullBreakMinutes,
+        props.fullBreakSeconds,
+        props.rounds
+      );
+    }
+    if (type === 'miniBreakSeconds' && props.miniBreakMinutes < 1 && num < 1) {
+      num = 1;
+    }
+    if (type === 'fullBreakMinutes' && num < 1 && props.fullBreakSeconds < 1) {
+      props.setFullBreakSeconds(1);
+      props.onChange(
+        props.learningMinutes,
+        props.learningSeconds,
+        props.miniBreakMinutes,
+        props.miniBreakSeconds,
+        num,
+        1,
+        props.rounds
+      );
+    }
+    if (type === 'fullBreakSeconds' && props.fullBreakMinutes < 1 && num < 1) {
+      num = 1;
+    }
+
     setter(num);
 
     props.onChange(
