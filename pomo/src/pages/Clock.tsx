@@ -138,7 +138,9 @@ function Clock() {
         }
       } else if (phase === 'full') {
         if (fullBreak.minutes === 0 && fullBreak.seconds === 0) {
-          setIsRunning(false);
+            setPhase('learning');
+            handleReset();
+            handleStart();
         } else {
           setFullBreak(prev => decreaseTime(prev));
         }
