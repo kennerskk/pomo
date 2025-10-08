@@ -78,6 +78,20 @@ function Clock() {
     initialRounds.current = roundVal;
   }
 
+  function handleSkip() {
+    if (phase !== 'full') {
+      setCurrentRound(r => r + 1)
+      setPhase('learning');
+    }
+    else {
+      setCurrentRound(r => r + 1)
+      setPhase('learning');
+      handleReset();
+      handleStart();
+    }
+    
+  }
+
   function handleStart() {
     setIsRunning(true);
   }
@@ -206,6 +220,8 @@ function Clock() {
             onStart={handleStart}
             onStop={handleStop}
             onReset={handleReset}
+            onSkip={handleSkip}
+            isBreak={phase !== 'learning'}
         />
 
         {/* ฝั่งขวา: ฟอร์ม + แสดงผล + ปุ่ม */}
