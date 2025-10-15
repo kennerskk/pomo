@@ -78,6 +78,20 @@ function Clock() {
     initialRounds.current = roundVal;
   }
 
+  function handleSkip() {
+    if (phase !== 'full') {
+      setCurrentRound(r => r + 1)
+      setPhase('learning');
+    }
+    else {
+      setCurrentRound(r => r + 1)
+      setPhase('learning');
+      handleReset();
+      handleStart();
+    }
+    
+  }
+
   function handleStart() {
     setIsRunning(true);
   }
@@ -138,7 +152,9 @@ function Clock() {
         }
       } else if (phase === 'full') {
         if (fullBreak.minutes === 0 && fullBreak.seconds === 0) {
-          setIsRunning(false);
+            setPhase('learning');
+            handleReset();
+            handleStart();
         } else {
           setFullBreak(prev => decreaseTime(prev));
         }
@@ -189,6 +205,8 @@ function Clock() {
             onStart={handleStart}
             onStop={handleStop}
             onReset={handleReset}
+            onSkip={handleSkip}
+            isBreak={phase !== 'learning'}
           />
         </div>
 

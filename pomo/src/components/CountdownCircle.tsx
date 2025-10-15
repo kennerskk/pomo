@@ -5,6 +5,8 @@ type Props = {
   timeLeft: number;
   phase: "learning" | "mini" | "full";
   isRunning: boolean;
+  isBreak: boolean;
+  onSkip: () => void;
   onStart: () => void;
   onStop: () => void;
   onReset: () => void;
@@ -17,6 +19,8 @@ const CountdownCircle: React.FC<Props> = ({
   timeLeft,
   phase,
   isRunning,
+  isBreak,
+  onSkip,
   onStart,
   onStop,
   onReset,
@@ -87,6 +91,14 @@ const CountdownCircle: React.FC<Props> = ({
                     <img
                     src="./src/assets/play.svg"
                     alt="Start"
+                    height="24"
+                    width="24" />
+                </button>
+            ) : isBreak ? (
+                <button className="btn-start" onClick={onSkip}>
+                    <img
+                    src="./src/assets/Skip.svg"
+                    alt="Skip"
                     height="24"
                     width="24" />
                 </button>
