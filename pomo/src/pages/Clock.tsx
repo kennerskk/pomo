@@ -148,7 +148,6 @@ function Clock() {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-    // eslint-disable-next-line
   }, [isRunning, phase, learningTime, miniBreak, fullBreak, currentRound, rounds]);
 
   // เลือกสีพื้นหลัง
@@ -178,25 +177,11 @@ function Clock() {
       : fullBreak.minutes * 60 + fullBreak.seconds;
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        maxHeight: '100vh',
-        background: getBgColor(),
-        transition: 'background 0.5s',
-        alignContent: 'center',
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'flex-start',
-          gap: '40px',
-        }}
-      >
+    <div className='clock-body' style={{ backgroundColor: getBgColor(), transition: 'background 0.5s' }}>
+      <div className="clock-container">
         {/* ฝั่งซ้าย: วงนับเวลา */}
-        <CountdownCircle
+        <div className="clock-countdown">
+          <CountdownCircle
             totalSeconds={totalSeconds}
             timeLeft={timeLeft}
             phase={phase}
@@ -204,10 +189,11 @@ function Clock() {
             onStart={handleStart}
             onStop={handleStop}
             onReset={handleReset}
-        />
+          />
+        </div>
 
         {/* ฝั่งขวา: ฟอร์ม + แสดงผล + ปุ่ม */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', paddingLeft: '96px' }}>
+        <div className="clock-form">
           <ClockForm
             learningMinutes={learningMinutes}
             setLearningMinutes={setLearningMinutes}

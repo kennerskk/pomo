@@ -36,7 +36,7 @@ const CountdownCircle: React.FC<Props> = ({
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div>
       <svg width={size} height={size}>
         {/* วงพื้นหลังโปร่งแสง */}
         <circle
