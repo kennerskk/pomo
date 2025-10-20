@@ -1,4 +1,3 @@
-import React from 'react';
 
 type ClockDisplayProps = {
   phase: 'learning' | 'mini' | 'full';
