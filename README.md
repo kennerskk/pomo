@@ -20,7 +20,7 @@
 ## 🚀 วิธีใช้งาน (Getting Started)
 
 ### 🔗 ผ่านเว็บไซต์
-> 👉 [คลิกที่นี่เพื่อใช้งานแอพ Pomo(demo)](https://your-link-here.com)
+> 👉 [คลิกที่นี่เพื่อใช้งานแอพ Pomo(demo)](https://pomo-opal.vercel.app/)
 
 ---
 
@@ -28,7 +28,7 @@
 
 ```bash
 # 1️⃣ Clone โปรเจกต์
-git clone https://github.com/your-username/pomo.git
+git clone https://github.com/kennerskk/pomo
 cd pomo
 
 # 2️⃣ ติดตั้ง dependencies
