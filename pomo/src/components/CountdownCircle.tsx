@@ -72,7 +72,6 @@ const CountdownCircle: React.FC<Props> = ({
         {/* ใส่เนื้อหาข้างในวงกลม */}
         <foreignObject x="0" y="0" width={size} height={size}>
         <div
-            xmlns="http://www.w3.org/1999/xhtml"
             className="inclock-foreign-container"
         >
             {/* ครึ่งบน */}
