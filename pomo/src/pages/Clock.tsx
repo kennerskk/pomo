@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ClockForm from '../components/ClockForm';
-// import ClockDisplay from '../components/ClockDisplay';
-// import ClockButtons from '../components/ClockButtons';
 import CountdownCircle from "../components/CountdownCircle";
 
 type Time = { minutes: number; seconds: number };
@@ -21,7 +19,7 @@ function Clock() {
   const [currentRound, setCurrentRound] = useState(1);
   const [phase, setPhase] = useState<'learning' | 'mini' | 'full'>('learning');
   const [isRunning, setIsRunning] = useState(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const initialLearning = useRef<Time>({ minutes: 25, seconds: 0 });
   const initialMini = useRef<Time>({ minutes: 5, seconds: 0 });
@@ -81,6 +79,7 @@ function Clock() {
   function handleSkip() {
     if (phase !== 'full') {
       setCurrentRound(r => r + 1)
+      setLearningTime({ ...initialLearning.current });
       setPhase('learning');
     }
     else {
@@ -230,23 +229,6 @@ function Clock() {
             isRunning={isRunning}
             onChange={autoSetTimer}
           />
-          {/* <ClockDisplay
-            phase={phase}
-            learningMinutes={learningMinutes}
-            learningSeconds={learningSeconds}
-            miniBreakMinutes={miniBreakMinutes}
-            miniBreakSeconds={miniBreakSeconds}
-            fullBreakMinutes={fullBreakMinutes}
-            fullBreakSeconds={fullBreakSeconds}
-            currentRound={currentRound}
-            rounds={rounds}
-          />
-          <ClockButtons
-            isRunning={isRunning}
-            onStart={handleStart}
-            onStop={handleStop}
-            onReset={handleReset}
-          /> */}
         </div>
       </div>
     </div>
