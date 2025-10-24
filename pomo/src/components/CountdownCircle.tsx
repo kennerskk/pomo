@@ -86,7 +86,7 @@ const CountdownCircle: React.FC<Props> = ({
             {/* ครึ่งล่าง */}
             <div className="inclock-bottom">
             {!isRunning ? (
-                <button className="btn-start" onClick={onStart}>
+                <button className="inclock-btn" onClick={onStart}>
                     <img
                     src="/play.svg"
                     alt="Start"
@@ -94,7 +94,7 @@ const CountdownCircle: React.FC<Props> = ({
                     width="24" />
                 </button>
             ) : isBreak ? (
-                <button className="btn-start" onClick={onSkip}>
+                <button className="inclock-btn" onClick={onSkip}>
                     <img
                     src="/skip.svg"
                     alt="Skip"
@@ -102,7 +102,7 @@ const CountdownCircle: React.FC<Props> = ({
                     width="24" />
                 </button>
             ) : (
-                <button className="btn-start" onClick={onStop}>
+                <button className="inclock-btn" onClick={onStop}>
                     <img
                     src="/pause.svg"
                     alt="Pause"
@@ -110,7 +110,13 @@ const CountdownCircle: React.FC<Props> = ({
                     width="24" />
                 </button>
             )}
-            <button className="btn-start" onClick={onReset}>Reset</button>
+            <button className="inclock-btn" onClick={onReset} disabled={!isRunning}>
+                <img
+                src="/reset.svg"
+                alt="Reset"
+                height="24"
+                width="24" />
+            </button>
             </div>
         </div>
         </foreignObject>
