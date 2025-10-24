@@ -19,6 +19,7 @@ function Clock() {
   const [currentRound, setCurrentRound] = useState(1);
   const [phase, setPhase] = useState<'learning' | 'mini' | 'full'>('learning');
   const [isRunning, setIsRunning] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const initialLearning = useRef<Time>({ minutes: 25, seconds: 0 });
@@ -88,10 +89,16 @@ function Clock() {
       handleReset();
       handleStart();
     }
-    
   }
 
+  // onStart (first time)
   function handleStart() {
+    if (!hasStarted) setHasStarted(true);
+    setIsRunning(true);
+  }
+
+  // onContinue (resume after pause)
+  function handleContinue() {
     setIsRunning(true);
   }
 
@@ -107,6 +114,7 @@ function Clock() {
     setCurrentRound(1);
     setPhase('learning');
     setIsRunning(false);
+    setHasStarted(false);
     setLearningMinutes(initialLearning.current.minutes);
     setLearningSeconds(initialLearning.current.seconds);
     setMiniBreakMinutes(initialMini.current.minutes);
@@ -201,7 +209,9 @@ function Clock() {
             timeLeft={timeLeft}
             phase={phase}
             isRunning={isRunning}
+            hasStarted={hasStarted}
             onStart={handleStart}
+            onContinue={handleContinue}
             onStop={handleStop}
             onReset={handleReset}
             onSkip={handleSkip}
