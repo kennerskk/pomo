@@ -425,13 +425,37 @@ nav:hover {
   box-shadow: #00000015 0 4px 4px;
 }
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* Footer container */
+.footer {
+  background-color: #1b1b1b;
+  width: 100%;
+  padding: 0.5rem 0;
+  transition: background-color 200ms ease-in-out;
+}
+
+.footer:hover {
+  background-color: #151515;
+}
+
+/* Footer text */
 .version-info {
   text-align: center;
-  padding: 16px 0;
   font-size: 0.9em;
-  color: #888;
+  color: #fff;
+  opacity: 0.6;
   -webkit-user-select: none;
   user-select: none;
+  margin: 0;
 }
 
 /* Responsive */

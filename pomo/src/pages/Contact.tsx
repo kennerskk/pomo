@@ -107,11 +107,6 @@ function Contact() {
             <div className={`copied ${copied ? 'show' : ''}`}>
                 Email copied to clipboard!
             </div>
-
-            {/* Footer */}
-            <footer className="version-info">
-                <p>pomo v1.0.0 | S.Khuprachamit & T.Songtalay | 2025</p>
-            </footer>
         </div>
     );
 }
