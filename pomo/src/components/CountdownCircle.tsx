@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 type Props = {
   totalSeconds: number;
@@ -12,8 +12,6 @@ type Props = {
   onContinue: () => void;
   onStop: () => void;
   onReset: () => void;
-  size?: number;
-  strokeWidth?: number;
 };
 
 const CountdownCircle: React.FC<Props> = ({
@@ -28,10 +26,23 @@ const CountdownCircle: React.FC<Props> = ({
   onContinue,
   onStop,
   onReset,
-  size = 500,
-  strokeWidth = 24,
 }) => {
-  const radius = (size - strokeWidth) / 2;
+  const [svgSize, setSvgSize] = useState(500);
+  const [strokeWidth, setStrokeWidth] = useState(24);
+
+  // Update SVG size and stroke based on window width
+  useEffect(() => {
+    function handleResize() {
+      const width = Math.min(window.innerWidth * 0.8, 500); // max 500px, 80% of screen
+      setSvgSize(width);
+      setStrokeWidth(width * 0.048); // stroke proportional to size
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const radius = (svgSize - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const progress = totalSeconds > 0 ? timeLeft / totalSeconds : 0;
   const strokeDashoffset = circumference * (1 - progress);
@@ -44,18 +55,18 @@ const CountdownCircle: React.FC<Props> = ({
   }
 
   return (
-    <div>
-      <svg width={size} height={size}>
-        {/* วงพื้นหลังโปร่งแสง */}
+    <div style={{ width: "100%", maxWidth: svgSize, margin: "0 auto" }}>
+      <svg width={svgSize} height={svgSize}>
+        {/* Background circle */}
         <circle
-          stroke="rgba(255,255,255,0.3)"
+          stroke="rgba(255,255,255,0.1)"
           fill="transparent"
           strokeWidth={strokeWidth}
           r={radius}
-          cx={size / 2}
-          cy={size / 2}
+          cx={svgSize / 2}
+          cy={svgSize / 2}
         />
-        {/* วงเวลาที่นับถอยหลัง */}
+        {/* Countdown circle */}
         <circle
           stroke="#fff"
           fill="transparent"
@@ -64,58 +75,129 @@ const CountdownCircle: React.FC<Props> = ({
           strokeDasharray={circumference}
           strokeDashoffset={strokeDashoffset}
           r={radius}
-          cx={size / 2}
-          cy={size / 2}
+          cx={svgSize / 2}
+          cy={svgSize / 2}
           style={{
             transition: "stroke-dashoffset 1s linear",
             transform: `rotate(-90deg)`,
             transformOrigin: "50% 50%",
           }}
         />
-
-        {/* ใส่เนื้อหาข้างในวงกลม */}
-        <foreignObject x="0" y="0" width={size} height={size}>
-        <div
+        {/* Inner content */}
+        <foreignObject x="0" y="0" width={svgSize} height={svgSize}>
+          <div
             className="inclock-foreign-container"
-        >
-            {/* ครึ่งบน */}
-            <div className="inclock-top">
-            <p className="inclock-time">
-                {Math.floor(timeLeft / 60).toString().padStart(2, "0")}:
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%",
+              height: "100%",
+              padding: svgSize * 0.1,
+              boxSizing: "border-box",
+            }}
+          >
+            {/* Top: Time + Phase */}
+            <div className="inclock-top" style={{ textAlign: "center" }}>
+              <p
+                className="inclock-time"
+                style={{ fontSize: svgSize * 0.15, margin: 0, lineHeight: 1 }}
+              >
+                {Math.floor(timeLeft / 60)
+                  .toString()
+                  .padStart(2, "0")}
+                :
                 {(timeLeft % 60).toString().padStart(2, "0")}
-            </p>
-            <p className="inclock-current-phase">{getPhaseText()}</p>
+              </p>
+              <p
+                className="inclock-current-phase"
+                style={{ fontSize: svgSize * 0.035, margin: 0 }}
+              >
+                {getPhaseText()}
+              </p>
             </div>
 
-            {/* ครึ่งล่าง */}
-            <div className="inclock-bottom">
-              {/* Button 1: Start / Continue / Pause / Skip */}
+            {/* Bottom: Buttons */}
+            <div
+              className="inclock-bottom"
+              style={{
+                display: "flex",
+                gap: svgSize * 0.05,
+                justifyContent: "center",
+              }}
+            >
+              {/* Button 1 */}
               {!hasStarted ? (
-                <button className="inclock-btn" onClick={onStart}>
-                  <img src="/play.svg" alt="Start" height="24" width="24" />
+                <button
+                  className="inclock-btn"
+                  onClick={onStart}
+                  style={{ width: svgSize * 0.1, height: svgSize * 0.1 }}
+                >
+                  <img
+                    src="/play.svg"
+                    alt="Start"
+                    width={svgSize * 0.05}
+                    height={svgSize * 0.05}
+                  />
                 </button>
-              ) :
-              !isRunning ? (
-                <button className="inclock-btn" onClick={onContinue}>
-                  <img src="/play.svg" alt="Continue" height="24" width="24" />
+              ) : !isRunning ? (
+                <button
+                  className="inclock-btn"
+                  onClick={onContinue}
+                  style={{ width: svgSize * 0.1, height: svgSize * 0.1 }}
+                >
+                  <img
+                    src="/play.svg"
+                    alt="Continue"
+                    width={svgSize * 0.05}
+                    height={svgSize * 0.05}
+                  />
                 </button>
               ) : isBreak ? (
-                <button className="inclock-btn" onClick={onSkip}>
-                  <img src="/skip.svg" alt="Skip" height="24" width="24" />
+                <button
+                  className="inclock-btn"
+                  onClick={onSkip}
+                  style={{ width: svgSize * 0.1, height: svgSize * 0.1 }}
+                >
+                  <img
+                    src="/skip.svg"
+                    alt="Skip"
+                    width={svgSize * 0.05}
+                    height={svgSize * 0.05}
+                  />
                 </button>
               ) : (
-                <button className="inclock-btn" onClick={onStop}>
-                  <img src="/pause.svg" alt="Pause" height="24" width="24" />
+                <button
+                  className="inclock-btn"
+                  onClick={onStop}
+                  style={{ width: svgSize * 0.1, height: svgSize * 0.1 }}
+                >
+                  <img
+                    src="/pause.svg"
+                    alt="Pause"
+                    width={svgSize * 0.05}
+                    height={svgSize * 0.05}
+                  />
                 </button>
               )}
 
               {/* Button 2: Reset */}
-              <button className="inclock-btn" onClick={onReset} disabled={!hasStarted}>
-                <img src="/reset.svg" alt="Reset" height="24" width="24" />
+              <button
+                className="inclock-btn"
+                onClick={onReset}
+                disabled={!hasStarted}
+                style={{ width: svgSize * 0.1, height: svgSize * 0.1 }}
+              >
+                <img
+                  src="/reset.svg"
+                  alt="Reset"
+                  width={svgSize * 0.05}
+                  height={svgSize * 0.05}
+                />
               </button>
-
             </div>
-        </div>
+          </div>
         </foreignObject>
       </svg>
     </div>

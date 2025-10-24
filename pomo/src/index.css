@@ -262,7 +262,7 @@ nav:hover {
   font-size: 5em;
   font-weight: 1000;
   margin: 0;
-  padding: 2em 0 0;
+  padding: 1.5em 0 0.2em 0;
 }
 .inclock-current-phase {
   font-size: 1.2em;
@@ -281,7 +281,7 @@ nav:hover {
   background-color: rgba(255, 255, 255, 0.1);
   cursor: pointer;
   transition: background-color 150ms ease, transform 100ms ease;
-  margin: 0 8px;          /* small horizontal spacing between buttons */
+  margin: 0;          /* small horizontal spacing between buttons */
 }
 
 .inclock-btn:hover:not(:disabled) {
