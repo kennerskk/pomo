@@ -11,7 +11,7 @@ export default function ClockButtons(props: ClockButtonsProps) {
     <div style={{ marginTop: 16 }}>
       <button onClick={props.onStart} disabled={props.isRunning}>Start</button>
       <button onClick={props.onStop} disabled={!props.isRunning}>Stop</button>
-      <button onClick={props.onReset}>Reset</button>
+      <button onClick={props.onReset} disabled={!props.isRunning}>Reset</button>
     </div>
   );
 }
