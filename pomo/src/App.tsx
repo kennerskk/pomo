@@ -5,7 +5,7 @@ import './index.css'
 
 function App() {
   return (
-    <div>
+    <div className="app-container">
       {/* Navbar */}
       <nav>
         <div className='nav-container'>
@@ -21,12 +21,19 @@ function App() {
         </div>
       </nav>
 
-      {/* Routes */}
-      <Routes>
-        <Route path="/" element={<Clock />} />
-        <Route path="/clock" element={<Clock />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
+      {/* Page Content */}
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Clock />} />
+          <Route path="/clock" element={<Clock />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </main>
+
+      {/* Footer */}
+      <footer className="footer">
+        <p className='version-info'>pomo v1.0.0 | S.Khuprachamit & T.Songtalay | 2025</p>
+      </footer>
     </div>
   )
 }
