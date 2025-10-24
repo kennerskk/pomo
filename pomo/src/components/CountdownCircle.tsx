@@ -4,10 +4,12 @@ type Props = {
   totalSeconds: number;
   timeLeft: number;
   phase: "learning" | "mini" | "full";
+  hasStarted: boolean;
   isRunning: boolean;
   isBreak: boolean;
   onSkip: () => void;
   onStart: () => void;
+  onContinue: () => void;
   onStop: () => void;
   onReset: () => void;
   size?: number;
@@ -18,10 +20,12 @@ const CountdownCircle: React.FC<Props> = ({
   totalSeconds,
   timeLeft,
   phase,
+  hasStarted,
   isRunning,
   isBreak,
   onSkip,
   onStart,
+  onContinue,
   onStop,
   onReset,
   size = 500,
@@ -85,38 +89,31 @@ const CountdownCircle: React.FC<Props> = ({
 
             {/* ครึ่งล่าง */}
             <div className="inclock-bottom">
-            {!isRunning ? (
+              {/* Button 1: Start / Continue / Pause / Skip */}
+              {!hasStarted ? (
                 <button className="inclock-btn" onClick={onStart}>
-                    <img
-                    src="/play.svg"
-                    alt="Start"
-                    height="24"
-                    width="24" />
+                  <img src="/play.svg" alt="Start" height="24" width="24" />
                 </button>
-            ) : isBreak ? (
+              ) :
+              !isRunning ? (
+                <button className="inclock-btn" onClick={onContinue}>
+                  <img src="/play.svg" alt="Continue" height="24" width="24" />
+                </button>
+              ) : isBreak ? (
                 <button className="inclock-btn" onClick={onSkip}>
-                    <img
-                    src="/skip.svg"
-                    alt="Skip"
-                    height="24"
-                    width="24" />
+                  <img src="/skip.svg" alt="Skip" height="24" width="24" />
                 </button>
-            ) : (
+              ) : (
                 <button className="inclock-btn" onClick={onStop}>
-                    <img
-                    src="/pause.svg"
-                    alt="Pause"
-                    height="24"
-                    width="24" />
+                  <img src="/pause.svg" alt="Pause" height="24" width="24" />
                 </button>
-            )}
-            <button className="inclock-btn" onClick={onReset} disabled={!isRunning}>
-                <img
-                src="/reset.svg"
-                alt="Reset"
-                height="24"
-                width="24" />
-            </button>
+              )}
+
+              {/* Button 2: Reset */}
+              <button className="inclock-btn" onClick={onReset} disabled={!hasStarted}>
+                <img src="/reset.svg" alt="Reset" height="24" width="24" />
+              </button>
+
             </div>
         </div>
         </foreignObject>
