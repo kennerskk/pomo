@@ -43,7 +43,7 @@ function Contact() {
             <div className='contact-card'>
             <div className='contact-card-content'>
                 <img
-                src="./src/assets/ken.jpg"
+                src="./public/ken.jpg"
                 alt="Sarayut's Profile"
                 className="profile"
                 />
@@ -55,15 +55,15 @@ function Contact() {
                 </p>
                 <div className='contact-card-links'>
                     <div className='email' onClick={() => handleCopy("khuprachamitsarayut@gmail.com")}>
-                    <img src="./src/assets/email.svg" alt="Email" width={24} className='links-icon' />
+                    <img src="./public/email.svg" alt="Email" width={24} className='links-icon' />
                     <p className='button'>Email</p>
                     </div>
                     <div className='github' onClick={() => window.open("https://github.com/kennerskk")}>
-                    <img src="./src/assets/github.svg" alt="GitHub" width={24} className='links-icon' />
+                    <img src="./public/github.svg" alt="GitHub" width={24} className='links-icon' />
                     <p className='button'>GitHub</p>
                     </div>
                     <div className='discord' onClick={() => window.open("https://discord.com/users/1058789159390687363")}>
-                    <img src="./src/assets/discord.svg" alt="Discord" width={24} className='links-icon' />
+                    <img src="./public/discord.svg" alt="Discord" width={24} className='links-icon' />
                     <p className='button'>Discord</p>
                     </div>
                 </div>
@@ -74,7 +74,7 @@ function Contact() {
             <div className='contact-card'>
             <div className='contact-card-content'>
                 <img
-                src="./src/assets/hope.jpg"
+                src="./public/hope.jpg"
                 alt="Teeruch's Profile"
                 className="profile"
                 />
@@ -86,15 +86,15 @@ function Contact() {
                 </p>
                 <div className='contact-card-links'>
                     <div className='email' onClick={() => handleCopy("hopexforwork@gmail.com")}>
-                    <img src="./src/assets/email.svg" alt="Email" width={24} className='links-icon' />
+                    <img src="./public/email.svg" alt="Email" width={24} className='links-icon' />
                     <p className='button'>Email</p>
                     </div>
                     <div className='github' onClick={() => window.open("https://github.com/hxpehophopv2")}>
-                    <img src="./src/assets/github.svg" alt="GitHub" width={24} className='links-icon' />
+                    <img src="./public/github.svg" alt="GitHub" width={24} className='links-icon' />
                     <p className='button'>GitHub</p>
                     </div>
                     <div className='discord' onClick={() => window.open("https://discord.com/users/480689836085477377")}>
-                    <img src="./src/assets/discord.svg" alt="Discord" width={24} className='links-icon' />
+                    <img src="./public/discord.svg" alt="Discord" width={24} className='links-icon' />
                     <p className='button'>Discord</p>
                     </div>
                 </div>
