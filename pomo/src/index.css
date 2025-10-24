@@ -425,6 +425,15 @@ nav:hover {
   box-shadow: #00000015 0 4px 4px;
 }
 
+.version-info {
+  text-align: center;
+  padding: 16px 0;
+  font-size: 0.9em;
+  color: #888;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 /* Responsive */
 @media(max-width: 1000px) {
   .contact-card-container, .contact-card-links, .clock-container {
