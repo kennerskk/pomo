@@ -88,7 +88,7 @@ const CountdownCircle: React.FC<Props> = ({
             {!isRunning ? (
                 <button className="btn-start" onClick={onStart}>
                     <img
-                    src="./public/play.svg"
+                    src="/play.svg"
                     alt="Start"
                     height="24"
                     width="24" />
@@ -96,7 +96,7 @@ const CountdownCircle: React.FC<Props> = ({
             ) : isBreak ? (
                 <button className="btn-start" onClick={onSkip}>
                     <img
-                    src="./public/skip.svg"
+                    src="/skip.svg"
                     alt="Skip"
                     height="24"
                     width="24" />
@@ -104,7 +104,7 @@ const CountdownCircle: React.FC<Props> = ({
             ) : (
                 <button className="btn-start" onClick={onStop}>
                     <img
-                    src="./public/pause.svg"
+                    src="/pause.svg"
                     alt="Pause"
                     height="24"
                     width="24" />
