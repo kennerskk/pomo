@@ -9,7 +9,9 @@ function App() {
       {/* Navbar */}
       <nav>
         <div className='nav-container'>
-          <Link to="/" className='logo'>POMO</Link>
+          <Link to="/" className='logo'>
+            <img src="/pomo.svg" alt="pomo Logo" height={ '24px' }  />
+          </Link>
           <div className='nav-links-container'>
             <div className='nav-buttons'>
               <Link to="/clock" className='nav-links'>Clock</Link>

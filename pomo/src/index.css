@@ -91,12 +91,13 @@ h4 {
   user-select: none;
   cursor: pointer;
   padding: 0 16px;
-  color: #ffffff8b;
+  opacity: 0.5;
   text-decoration: none;
+  translate: 0 4px;
   transition: all 150ms ease-out;
 }
 .logo:hover {
-  color: #fff;
+  opacity: 1;
 }
 
 /* Navbar */
